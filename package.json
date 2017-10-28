@@ -1,0 +1,23 @@
+{
+  "name": "google-image-parser",
+  "version": "1.0.0",
+  "description": "The app parses JSON data by Google Custom Search API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeylRaytop/google-img-api.git"
+  },
+  "author": "Deyl Raytop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeylRaytop/google-img-api/issues"
+  },
+  "homepage": "https://github.com/DeylRaytop/google-img-api#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  }
+}
