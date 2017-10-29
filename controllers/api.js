@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const db = require('../models/requested.js')
+const path = require('path');
 
 router.get('/', (req, res) => {
-  res.end('This is api page');
+  res.sendFile(path.join(path.resolve('.'), 'views/index.html'));
 });
 router.get('/imagesearch/:query', (req, res) => {
   const api = 'https://www.googleapis.com/customsearch/v1';
