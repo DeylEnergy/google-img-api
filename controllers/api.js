@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
+const db = require('../models/requested.js')
 
 router.get('/', (req, res) => {
   res.end('This is api page');
@@ -24,8 +25,17 @@ router.get('/imagesearch/:query', (req, res) => {
           context: val.image.contextLink
         });
       });
+      db.insertingQuery({
+        term: query,
+        when: new Date()
+      });
       res.json(data);
     }
+  });
+});
+router.get('/latest/imagesearch', (req, res) => {
+  db.showLastQueries((err, data) => {
+    res.json(data);
   });
 });
 router.get('*', (req, res) => {

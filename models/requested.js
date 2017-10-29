@@ -5,11 +5,11 @@ const dbPromise = mongoose.connect('mongodb://localhost/googleimg', {
 });
 
 const RequestedSchema = mongoose.Schema({
-  query: {
+  term: {
     type: String,
     required: true
   },
-  date: {
+  when: {
     type: Date,
     required: true
   }
@@ -17,13 +17,10 @@ const RequestedSchema = mongoose.Schema({
 exports.Request = mongoose.model('UserQueries', RequestedSchema);
 
 exports.showLastQueries = (cb) => {
-  dbPromise.then(db => {
-    exports.Request.find({}, cb);
-  });
+    exports.Request.find({}, {_id:0, __v:0}, cb).sort({_id: -1});
 };
 
 exports.insertingQuery = query => {
-  dbPromise.then(db => {
     const data = new exports.Request(query);
     data.save(err => {
       if (err) throw err;
@@ -31,5 +28,4 @@ exports.insertingQuery = query => {
         console.log('A new request added');
       }
     });
-  });
 };
